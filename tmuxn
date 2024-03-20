@@ -1,0 +1,4 @@
+#!/bin/sh
+tmux new-session -A -s "main" -n "home" -d;
+tmux new-window -n "work";
+tmux -2 attach-session -t "main";
