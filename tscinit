@@ -1,4 +1,5 @@
 #!/bin/bash
+#* Initialize a new TypeScript project
 mkdir bin src
 touch src/index.ts
 printf "node_modules\nbin" > .gitignore

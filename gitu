@@ -1,4 +1,5 @@
 #!/bin/bash
+#* Easy git push changes to remote repository
 git status
 git add .
 git commit -a -m "Latest"
