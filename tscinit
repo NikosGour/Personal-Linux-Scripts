@@ -5,4 +5,4 @@ touch src/index.ts
 printf "node_modules\nbin" > .gitignore
 npm init -y
 npm i -D eslint nodemon @typescript-eslint/parser @typescript-eslint/eslint-plugin
-cp ~/.dotfiles/tsconfig.json ~/.dotfiles/.eslintrc.json .
+cp ~/tsconfig.json ~/.eslintrc.json .
