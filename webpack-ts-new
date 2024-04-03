@@ -1,0 +1,10 @@
+#!/bin/bash
+#* Initialize a new TypeScript project, with webpack
+mkdir bin src
+touch src/index.ts
+printf "node_modules\nbin" > .gitignore
+npm init -y
+npm i -D eslint nodemon @typescript-eslint/parser @typescript-eslint/eslint-plugin \
+	clean-webpack-plugin ts-loader webpack webpack-cli webpack-dev-server typescript
+cp ~/tsconfig.json ~/.eslintrc.json ~/webpack.config.js .
+sed -i '6a \    "build": "webpack",\n    "dev": "webpack serve",' package.json
