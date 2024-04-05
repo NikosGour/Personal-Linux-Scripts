@@ -26,7 +26,8 @@ printf "node_modules\nbin" > .gitignore
 npm init -y
 
 # Install the necessary packages
-npm i -D eslint nodemon @typescript-eslint/parser @typescript-eslint/eslint-plugin\
+npm i -D eslint nodemon \
+		@typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-plugin-file-extension-in-import-ts\
 		jest @types/jest
 
 # Copy the configuration files
