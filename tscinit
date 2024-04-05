@@ -32,6 +32,13 @@ npm i -D eslint nodemon @typescript-eslint/parser @typescript-eslint/eslint-plug
 # Copy the configuration files
 cp ~/config_files/tsconfig.json ~/config_files/.eslintrc.json ~/config_files/jest.config.js .
 
+# Make Node project a module
+sed -i 's|"scripts"|"type": "module",\n  &|' package.json  
+
+# Scripts
+dev_script='"dev": "nodemon bin/index.js"'
+test_script='NODE_OPTIONS=\\\"$NODE_OPTIONS --experimental-vm-modules\\\" npx jest --watchAll'
+
 # Add the test and dev scripts to package.json
-sed -i 's/echo \\\"Error: no test specified\\\" && exit 1/jest --watchAll/' package.json 
-sed -i '6a \    "dev": "nodemon bin/index.js",' package.json   
+sed -i "s|echo \\\\\"Error: no test specified\\\\\" && exit 1|${test_script}|" package.json 
+sed -i "s|\\\"test\\\":.*|${dev_script},\n    &|" package.json   

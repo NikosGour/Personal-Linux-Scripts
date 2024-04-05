@@ -7,12 +7,6 @@ BGreen='\033[1;32m'
 Blue='\033[0;34m'         
 BBlue='\033[1;34m'        
 
-
-
-
-    
-
-
 pwd_last_dir=`echo $PWD | rev | cut -d '/' -f 1 | rev`
 files=`find -maxdepth 1 -regex './.+' -type f| sed "s|\.\/|${pwd_last_dir}\/|"`
 dirs=`find -maxdepth 1 -regex './.+' -type d| sed "s|\.\/|${pwd_last_dir}\/|" | sed "s|.*|&/*|g"`

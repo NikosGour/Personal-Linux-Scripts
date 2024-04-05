@@ -1,0 +1,5 @@
+#!/bin/bash
+#* Add webpack to a TypeScript project
+npm i -D clean-webpack-plugin ts-loader webpack webpack-cli webpack-dev-server typescript
+cp ~/config_files/webpack.config.js .
+sed -i '6a \    "build": "webpack",\n    "dev": "webpack serve",' package.json
