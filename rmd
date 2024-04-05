@@ -1,10 +1,23 @@
 #!/bin/bash
-Red='\033[0;31m'    
 Color_Off='\033[0m'       
+Red='\033[0;31m'
+BRed='\033[1;31m'        
+Green='\033[0;32m'        
+BGreen='\033[1;32m'   
+Blue='\033[0;34m'         
+BBlue='\033[1;34m'        
 
-pwd=`echo $PWD | rev | cut -d '/' -f 1 | rev`
-files=`find -maxdepth 1 -regex './.+'| sed "s|\.\/|${pwd}\/|"`
+
+
+
+    
+
+
+pwd_last_dir=`echo $PWD | rev | cut -d '/' -f 1 | rev`
+files=`find -maxdepth 1 -regex './.+' -type f| sed "s|\.\/|${pwd_last_dir}\/|"`
+dirs=`find -maxdepth 1 -regex './.+' -type d| sed "s|\.\/|${pwd_last_dir}\/|" | sed "s|.*|&/*|g"`
 echo -e "${Red}${files}${Color_Off}"
+echo -e "${BBlue}${dirs}${Color_Off}"
 read -p "Are you sure you want to remove all files in the current directory? (y/n) " answer
 if [ $answer = "y" ];then
 	find -maxdepth 1 -regex './.+' | xargs rm -r
