@@ -6,5 +6,5 @@ printf "node_modules\nbin" > .gitignore
 npm init -y
 npm i -D eslint nodemon @typescript-eslint/parser @typescript-eslint/eslint-plugin \
 	clean-webpack-plugin ts-loader webpack webpack-cli webpack-dev-server typescript
-cp ~/tsconfig.json ~/.eslintrc.json ~/webpack.config.js .
+cp ~/config_files/tsconfig.json ~/config_files/.eslintrc.json ~/config_files/webpack.config.js .
 sed -i '6a \    "build": "webpack",\n    "dev": "webpack serve",' package.json

@@ -1,8 +1,37 @@
 #!/bin/bash
 #* Initialize a new TypeScript project
-mkdir bin src
-touch src/index.ts
+
+base_test='test(`two plus two is four`, () =>\n
+{\n
+	const a = (b:number, c:number) =>\n
+	{\n
+		return b+c;\n
+	};\n
+	expect(a(2, 2)).toBe(4);\n
+});'
+
+# Create the necessary directories
+mkdir bin src src/tests
+
+# Create the main file, with a hello world message
+echo "console.log('Hello, World!')" > src/index.ts
+
+# Create a test file, with a simple test
+echo -e $base_test > src/tests/index.test.ts
+
+# Create a .gitignore file
 printf "node_modules\nbin" > .gitignore
+
+# Initialize npm
 npm init -y
-npm i -D eslint nodemon @typescript-eslint/parser @typescript-eslint/eslint-plugin
-cp ~/tsconfig.json ~/.eslintrc.json .
+
+# Install the necessary packages
+npm i -D eslint nodemon @typescript-eslint/parser @typescript-eslint/eslint-plugin\
+		jest @types/jest
+
+# Copy the configuration files
+cp ~/config_files/tsconfig.json ~/config_files/.eslintrc.json ~/config_files/jest.config.js .
+
+# Add the test and dev scripts to package.json
+sed -i 's/echo \\\"Error: no test specified\\\" && exit 1/jest --watchAll/' package.json 
+sed -i '6a \    "dev": "nodemon bin/index.js",' package.json   
