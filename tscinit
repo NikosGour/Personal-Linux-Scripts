@@ -39,7 +39,8 @@ sed -i 's|"scripts"|"type": "module",\n  &|' package.json
 # Scripts
 dev_script='"dev": "nodemon bin/index.js"'
 test_script='NODE_OPTIONS=\\\"$NODE_OPTIONS --experimental-vm-modules\\\" npx jest --watchAll'
-
+clean_test='"clean": "rm -rf bin;tsc"'
 # Add the test and dev scripts to package.json
 sed -i "s|echo \\\\\"Error: no test specified\\\\\" && exit 1|${test_script}|" package.json 
 sed -i "s|\\\"test\\\":.*|${dev_script},\n    &|" package.json   
+sed -i "s|\\\"test\\\":.*|${clean_test},\n    &|" package.json   
