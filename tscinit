@@ -14,7 +14,7 @@ base_test='test(`two plus two is four`, () =>\n
 mkdir bin src src/tests
 
 # Create the main file, with a hello world message
-echo "console.log('Hello, World!')" > src/index.ts
+printf 'import logger from "./logger.js";\nlogger.debug("Hello World!")' > src/index.ts
 
 # Create a test file, with a simple test
 echo -e $base_test > src/tests/index.test.ts
@@ -28,11 +28,12 @@ npm init -y
 # Install the necessary packages
 npm i -D eslint nodemon \
 		@typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-plugin-file-extension-in-import-ts\
-		jest @types/jest
+		jest @types/jest \
+		winston
 
 # Copy the configuration files
 cp ~/config_files/tsconfig.json ~/config_files/.eslintrc.json ~/config_files/jest.config.js .
-
+cp ~/config_files/logger.ts ./src/
 # Make Node project a module
 sed -i 's|"scripts"|"type": "module",\n  &|' package.json  
 
