@@ -1,0 +1,4 @@
+#!/bin/bash
+
+touch input.txt
+printf "const part1 = ():number =>{return 0;}\nconst part2 = ():number =>{return 0;}\n\n\n//part1();\n//part2();" > src/index.ts

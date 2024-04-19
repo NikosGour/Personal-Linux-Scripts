@@ -1,0 +1,30 @@
+#!/bin/bash
+#* Initialize a new TypeScript project
+
+# Create the necessary directories
+mkdir bin src src/tests
+
+# Create the main file, with a hello world message
+printf 'console.log("Hello World!");' > src/index.ts
+
+# Create a .gitignore file
+printf "node_modules\nbin" > .gitignore
+
+# Initialize npm
+npm init -y
+
+# Install the necessary packages
+npm i -D eslint nodemon \
+		@typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-plugin-file-extension-in-import-ts\
+
+# Copy the configuration files
+cp ~/config_files/tsconfig.json ~/config_files/.eslintrc.json .
+# Make Node project a module
+sed -i 's|"scripts"|"type": "module",\n  &|' package.json  
+
+# Scripts
+dev_script='"dev": "nodemon bin/index.js"'
+clean_test='"clean": "rm -rf bin;tsc"'
+# Add the test and dev scripts to package.json
+sed -i "s|\\\"test\\\":.*|${dev_script},\n    &|" package.json   
+sed -i "s|\\\"test\\\":.*|${clean_test},\n    &|" package.json   
