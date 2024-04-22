@@ -1,4 +1,5 @@
 #!/bin/bash
 
+npm i @types/node
 touch input.txt
-printf "const part1 = ():number =>{return 0;}\nconst part2 = ():number =>{return 0;}\n\n\n//part1();\n//part2();" > src/index.ts
+printf "import * as fs from \"fs\"\nconst data:string[] = fs.readFileSync('input.txt','utf-8').split('\\\n');\nconst part1 = ():number =>{return 0;}\nconst part2 = ():number =>{return 0;}\n\n\n//part1();\n//part2();" > src/index.ts
