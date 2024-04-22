@@ -27,7 +27,7 @@ npm init -y
 
 # Install the necessary packages
 npm i -D eslint nodemon \
-		@typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-plugin-file-extension-in-import-ts\
+		@typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-plugin-file-extension-in-import-ts @stylistic/eslint-plugin\
 		jest @types/jest \
 		winston
 
