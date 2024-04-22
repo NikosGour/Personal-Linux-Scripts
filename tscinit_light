@@ -2,7 +2,7 @@
 #* Initialize a new TypeScript project
 
 # Create the necessary directories
-mkdir bin src src/tests
+mkdir bin src 
 
 # Create the main file, with a hello world message
 printf 'console.log("Hello World!");' > src/index.ts
