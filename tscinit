@@ -29,7 +29,8 @@ npm init -y
 npm i -D eslint nodemon \
 		@typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-plugin-file-extension-in-import-ts @stylistic/eslint-plugin\
 		jest @types/jest \
-		winston
+		winston \
+		--legacy-peer-deps
 
 # Copy the configuration files
 cp ~/config_files/tsconfig.json ~/config_files/.eslintrc.json ~/config_files/jest.config.js .
