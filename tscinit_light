@@ -15,8 +15,7 @@ npm init -y
 
 # Install the necessary packages
 npm i -D eslint nodemon \
-		@typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-plugin-file-extension-in-import-ts @stylistic/eslint-plugin\
-		--legacy-peer-deps
+		@typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-plugin-file-extension-in-import-ts @stylistic/eslint-plugin
 
 # Copy the configuration files
 cp ~/config_files/tsconfig.json ~/config_files/.eslintrc.json .
