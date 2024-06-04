@@ -14,7 +14,7 @@ base_test='test(`two plus two is four`, () =>\n
 mkdir bin src src/tests
 
 # Create the main file, with a hello world message
-printf 'import logger from "./logger.js";\nlogger.debug("Hello World!")' > src/index.ts
+printf 'import getLogger from "./logger.js";\nconst logger = getLogger();\nlogger.debug("Hello World!")' > src/index.ts
 
 # Create a test file, with a simple test
 echo -e $base_test > src/tests/index.test.ts
