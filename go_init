@@ -1,11 +1,15 @@
 #!/bin/env bash
 
+github_profile="NikosGour"
+
 # get params to get project name
 project_name=""
 
 usage() {
-	printf "Usage: $0 [project_name]"
+	printf "Usage: go_init [option] project_name\n\n\t-g\tIf you are planning on publishing on github. Make sure to change your github username in the script\n"
 }
+
+github_flag=false
 
 # if no arguments pass print usage
 if [ "$1" == "" ]; then
@@ -15,9 +19,9 @@ fi
 
 while [ "$1" != "" ]; do
 	case $1 in
-	# windows)
-	# 	windows_flag=true
-	# 	;;
+	-g)
+		github_flag=true
+		;;
 	# release)
 	# 	release_flag=true
 	# 	;;
@@ -33,7 +37,12 @@ done
 
 mkdir $project_name
 cd $project_name
-go mod init $project_name
+if [ $github_flag == true ]; then
+	git init
+	go mod init github.com/$github_profile/$project_name
+else
+	go mod init $project_name
+fi
 mkdir src out
 printf "out/" >.gitignore
 
