@@ -2,4 +2,5 @@
 #* Start tmux with a session named "main" and windows "home" and "work"
 tmux new-session -A -s "main" -n "home" -d;
 tmux new-window -n "work";
+tmux new-session -t "main" -s "secondary" -d;
 tmux -2 attach-session -t "main";
