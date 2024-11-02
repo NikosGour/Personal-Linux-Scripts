@@ -46,7 +46,8 @@ fi
 mkdir src out
 printf "out/" >.gitignore
 
-printf "package main\nimport \"fmt\"\nfunc main(){\nfmt.Println(\"Hello World\")\n}" >src/main.go
+printf "package main\n\nimport \"fmt\"\n\nfunc main(){\n\tfmt.Println(\"Hello World\")\n}" >src/main.go
 
-printf "#!/bin/env bash\ngo build -o out/$project_name src/main.go" >build.sh
+cp ~/config_files/go_build.sh build.sh
+sed -i "s/__PROJECT_NAME__/$project_name/g" build.sh
 chmod +x build.sh
