@@ -37,8 +37,10 @@ done
 
 mkdir $project_name
 cd $project_name
+mod_name="$project_name"
 if [ $github_flag == true ]; then
 	git init
+	mod_name="github.com/$github_profile/$project_name"
 	go mod init github.com/$github_profile/$project_name
 else
 	go mod init $project_name
@@ -46,7 +48,12 @@ fi
 mkdir src out
 printf "out/" >.gitignore
 
-printf "package main\n\nimport \"fmt\"\n\nfunc main(){\n\tfmt.Println(\"Hello World\")\n}" >src/main.go
+mkdir src/build
+printf "//go:build debug\n\npackage build\n\nconst (\n\tDEBUG_MODE = true\n)" >src/build/config.debug.go
+printf "//go:build !debug\n\npackage build\n\nconst (\n\tDEBUG_MODE = false\n)" >src/build/config.release.go
+
+printf "package main\n\nimport (\n\t\"fmt\"\n\t\"$mod_name/src/build\"\n)\n\n" >src/main.go
+printf "func main(){\n\tfmt.Printf(\"DEBUG_MODE = %%t\\\n\",build.DEBUG_MODE)\n}" >>src/main.go
 
 cp ~/config_files/go_build.sh build.sh
 sed -i "s/__PROJECT_NAME__/$project_name/g" build.sh
