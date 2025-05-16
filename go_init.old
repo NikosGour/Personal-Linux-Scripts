@@ -52,9 +52,11 @@ mkdir src/build
 printf "//go:build debug\n\npackage build\n\nconst (\n\tDEBUG_MODE = true\n)" >src/build/config.debug.go
 printf "//go:build !debug\n\npackage build\n\nconst (\n\tDEBUG_MODE = false\n)" >src/build/config.release.go
 
-printf "package main\n\nimport (\n\t\"fmt\"\n\t\"$mod_name/src/build\"\n)\n\n" >src/main.go
-printf "func main(){\n\tfmt.Printf(\"DEBUG_MODE = %%t\\\n\",build.DEBUG_MODE)\n}" >>src/main.go
+printf "package main\n\nimport (\n\t\"$mod_name/src/build\"\n\tlog \"github.com/NikosGour/logging/src\"\n)\n\n" >src/main.go
+printf "func main(){\n\tlog.Debug(\"DEBUG_MODE = %%t\\\n\",build.DEBUG_MODE)\n}" >>src/main.go
 
 cp ~/config_files/go_build.sh build.sh
 sed -i "s/__PROJECT_NAME__/$project_name/g" build.sh
 chmod +x build.sh
+
+go get -v -u github.com/NikosGour/logging@latest
