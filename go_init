@@ -53,7 +53,7 @@ printf "//go:build debug\n\npackage build\n\nconst (\n\tDEBUG_MODE = true\n)" >b
 printf "//go:build !debug\n\npackage build\n\nconst (\n\tDEBUG_MODE = false\n)" >build/config.release.go
 
 mkdir -p cmd/cli
-printf "package main\n\nimport (\n\t\"$mod_name/build\"\n\tlog \"github.com/NikosGour/logging/pkg\"\n)\n\n" > cmd/cli/main.go
+printf "package main\n\nimport (\n\t\"$mod_name/build\"\n\tlog \"github.com/NikosGour/logging/log\"\n)\n\n" > cmd/cli/main.go
 printf "func main(){\n\tlog.Debug(\"DEBUG_MODE = %%t\\\n\",build.DEBUG_MODE)\n}" >>cmd/cli/main.go
 
 cp ~/config_files/go_build.sh build.sh
