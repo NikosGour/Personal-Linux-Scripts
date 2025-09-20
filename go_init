@@ -48,6 +48,28 @@ fi
 mkdir internal out
 printf "out/" >.gitignore
 
+mkdir -p internal/projectpath
+project_path_file='package projectpath
+
+import (
+	"path"
+	"path/filepath"
+	"runtime"
+)
+
+var (
+	_, b, _, _ = runtime.Caller(0)
+
+	// Root folder of this project
+	Root = filepath.Join(filepath.Dir(b), "../..")
+)
+
+func RootFile(filepath string) string {
+	return path.Join(Root, filepath)
+}
+'
+echo "$project_path_file" >internal/projectpath/projectpath.go
+
 mkdir build
 printf "//go:build debug\n\npackage build\n\nconst (\n\tDEBUG_MODE = true\n)" >build/config.debug.go
 printf "//go:build !debug\n\npackage build\n\nconst (\n\tDEBUG_MODE = false\n)" >build/config.release.go
